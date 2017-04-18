@@ -1,0 +1,104 @@
+#page {
+    margin: 0;
+    padding: 0;
+}
+#page-header {
+    margin-left: 10%;
+    margin-right: 10%;
+    /*position: absolute;*/
+    /*background-color: #eee;*/
+    border-bottom: solid #ccc;
+    display: flex;
+}
+#icon {
+    float: right;
+    display: inline;
+}
+/*.search{
+    size : 100;
+}*/
+#RecCourse {
+    float: left;
+    /*padding-right: 20px;*/
+    /*border-right: thick double steelblue;*/
+    padding-left: 5px;
+    max-width: 70%;
+    /*display: inline-block;*/
+};
+#CandCourse, .candidateList {
+    float: left;
+    /*padding-left: 10px;*/
+    padding-right: 30px;
+    max-width: 20%;
+    /*display: inline-block;*/
+}
+
+#container {
+    margin-left: 10%;
+    margin-top: 2%;
+    overflow:hidden;
+}
+.left-base {
+            float: left;
+            padding-left: 10px;
+            max-width: 68%;
+        }
+.right-base {
+            float: right;
+            padding-right: 5%;
+            max-width: 30%;
+
+        }
+.sort {
+    font-size: 10px;
+}
+
+/*.list {
+    border-right: thick double #ccc;
+}*/
+
+#settings {
+    font-size: 15px;
+    /*margin-bottom: 10px;*/
+}
+/* for adding table*/
+.table-add {
+  color: steelblue;
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  right: 0;
+  
+  &:hover {
+    color: #0b0;
+  }
+}
+
+
+.form-group input[type="checkbox"] {
+    display: none;
+}
+
+.form-group input[type="checkbox"] + .btn-group > label span {
+    width: 20px;
+}
+
+.form-group input[type="checkbox"] + .btn-group > label span:first-child {
+    display: none;
+}
+.form-group input[type="checkbox"] + .btn-group > label span:last-child {
+    display: inline-block;   
+}
+
+.form-group input[type="checkbox"]:checked + .btn-group > label span:first-child {
+    display: inline-block;
+}
+.form-group input[type="checkbox"]:checked + .btn-group > label span:last-child {
+    display: none;   
+}
+table.fixed { table-layout:fixed; width:90px; word-break:break-all;}
+
+.glyphicon.glyphicon-send {
+    font-size: 30px;
+    cursor: pointer;
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        Course Selection System
+    </title>
+
+    <link href="pagevis.css" rel="stylesheet">
+
+    <style>
+        .oneblock {
+            width: 100%;
+            height: 400px;
+            /*display: block;*/
+        }
+        .innerp {
+            float: left;
+            line-height: 20px;
+            width: 50%;
+            /*margin-right: 10%;*/
+            vertical-align: middle;
+        }
+        
+        .innerimg {
+            float: right;
+            width: 45%;
+            /*height: 200px;*/
+            /*border: 2px solid #ccc;*/
+        }
+        .innerp2 {
+            float: right;
+            line-height: 20px;
+            width: 45%;
+            /*margin-right: 10%;*/
+            vertical-align: middle;
+        }
+        
+        .innerimg2 {
+            float: left;
+            width: 45%;
+            /*height: 200px;*/
+            /*border: 2px solid #ccc;*/
+        }
+    </style>
+</head>
+
+<body>
+    <div class="intropage">
+        <div class="head">
+            <h1>Course Selection System</h1>
+        </div>
+        <div class="pics">
+        </div>
+        <div class="intro">
+            <p> This is designed for helping Zhejiang University students better arrange their courses. </p>
+            <div class="oneblock">
+                <div class="innerp">
+                    <p> Firstly, they can log in with their student ID and password. We will help to synchronize with their timetable
+                        for further planning.</p>
+                </div>
+                <img  class="innerimg" src="course_img/login.png" alt="login">
+            </div>
+            <div class="oneblock">
+                <div class="innerp2">
+                    <p> After entering, they are offered with the list <span style="font-weight:bold">D</span> of all the courses available. </p>
+                    <p> They can choose different modes by click <span style="font-weight:bold">A</span>. </p>
+                    <p> When they click <span style="font-weight:bold">B</span> we can rank the courses by historical GPA or teacher ratings, which can greatly satisfy the need of students. </p>
+                    <p> <span style="font-weight:bold">C</span> is a search bar. They can search by the course name, teacher name, time, location... </p>
+                    <p> After adding the wanted courses, as shown in <span style="font-weight:bold">E</span>, they can press <span style="font-weight:bold">F</span> to trigger the automated course arranger. </p>
+                </div> 
+                <img  class="innerimg2" src="course_img/course.png" alt="course">
+            </div>
+            <div class="oneblock">
+                <div class="innerp">
+                    <p> All the wanted courses are listed in  <span style="font-weight:bold">D</span> . </p>
+                    <p> There are three buttons of <span style="font-weight:bold">B</span> can be clicked, according to three different modes, namely highest expected GPA, highest teacher ratings or highest scores. </p>
+                    <p> <span style="font-weight:bold">E</span> presents the timetable automated generated. And <span style="font-weight:bold">C</span> displays relative information. </p>
+                    <p> Three different candidates <span style="font-weight:bold">C</span> are for each mode. </p>
+                </div> 
+                <img  class="innerimg" src="course_img/3.png" alt="course">
+            </div>
+            <div>
+                <p>More functions are under developing for better handling the conflicts of different courses.</p>
+            </div>
+
+        </div>
+        <div class="resources">
+            <p> -- alpha-version --</p>
+            <p> Code is avaiable <a href="">here</a></p>
+            <p> -- beta-version --</p>
+            <p> Rewriting with angular.js. </p>
+            <p> To be continued.. </p>
+            <p> Go back to the <a href="../index.html">home page</a></p>
+        </div>
+        <div class="foot">
+            - realwsq -
+        </div>
+    </div>
+
+</html>

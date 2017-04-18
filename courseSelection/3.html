@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+	<style>
+		html {
+			margin: 10px;
+			height: 100%;
+		}
+		#page-header {
+			margin-left: 2%;
+			margin-right: 2%;
+			margin-bottom: 20px;
+			/*position: absolute;*/
+			/*background-color: #eee;*/
+			border-bottom: solid #ccc;
+			display: flex;
+		}
+
+		#icon {
+			float: right;
+			display: inline;
+		}
+		.left-base {
+			float: left;
+			padding-left: 20px;
+			max-width: 68%;
+		}
+		
+		.right-base {
+			float: right;
+			padding-right: 20px;
+			max-width: 30%;
+		}
+		
+		.selected {
+			background-color: cyan;
+		}
+		
+		.non-selected {
+			background-color: gray;
+		}
+		
+		.close {
+			background-color: black;
+		}
+		
+		.table-content {
+			width: 13%;
+			line-height: 25px;
+			min-height: 25px;
+			height: 25px;
+		}
+		
+		.table_index {
+			width: 9%;
+		}
+		
+		.table-nonfluid {
+			/*width: auto !important;*/
+			table-layout: fixed;
+			overflow: hidden;
+			word-wrap: break-word;
+		}
+		.btn:focus {
+			outline: none;
+		}
+		button {
+			width: 100px;
+			height: 40px;
+		}
+		
+		div.tab {
+			/*overflow:auto;*/
+			border: 1px solid #ccc;
+			background-color: #f1f1f1;
+		}
+		.flex1 {
+			-webkit-flex: 1;
+			flex: 1;
+		}
+		ul {
+			padding: 0;
+		}
+		/* Style the buttons inside the tab */
+	</style>
+	<meta charset='utf-8'>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	<title>Couse Arranger</title>
+	<script src='http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js'></script>
+
+	<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	 crossorigin="anonymous">
+
+	<!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	 crossorigin="anonymous">
+
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	 crossorigin="anonymous"></script>
+
+
+	<script type='text/javascript' src='solve.js'>
+
+	</script>
+	<script type='text/javascript' src='total.js'>
+
+	</script>
+	<!-- Latest compiled and minified Locales -->
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+      <script src='https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js'></script>
+      <script src='https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js'></script>
+    <![endif]-->
+	<script>
+		var PLAN = 0;
+		var SEM = 0;
+		var W;
+		function changeList() {
+			// console.log('fuck');
+			document.getElementById('course_list').innerHTML = `
+				<ul>
+					<li class='list-group-item active'>
+						已选上的课程:  总学分 ${result[PLAN].credit}   平均GPA ${parseFloat(result[PLAN].gpa).toFixed(2)}
+					</li>
+					${result[PLAN].selected.map(course => `\
+						<li class="list-group-item"> ${course.name}<br>\
+							${course.teacher} <br>\
+							${course.semester} <br>\
+							${course.time}\
+						</li>`).join("")}
+				</ul>
+				`;
+		}
+		function arrange() {
+			result = solve(total, W);
+			// console.log(result);
+			changeList();
+			changeTable(SEM);
+		}
+	</script>
+	<script>
+		$(document).ready(function () {
+			// console.log(total);
+			document.getElementById('course_list').innerHTML = `
+				<ul>
+					<li class='list-group-item active'>
+						备选课程 总学分: ${total.reduce((prev, x) => prev + parseInt(x.credit), 0)}
+					</li>
+					${total.map(course => `\
+						<li class="list-group-item">\
+							${course.name} <br>\
+							${course.teacher} <br>\
+							${course.time} <br>\
+						</li>`).join("")}
+				</ul>
+				`;
+			$('#gpa_mode').click(function () {
+				$(this).blur();
+				$(this).addClass('active').siblings().removeClass('active');
+				W = { 'Must have': { 'gpa': 1.0, 'prob': 0.0, 'credit': 0.0, 'score': 0.0 }, 'Math': { 'gpa': 1, 'prob': 0.2 } };
+				arrange();
+			});
+			$('#credit_mode').click(function () {
+				$(this).blur();
+				$(this).addClass('active').siblings().removeClass('active');
+				W = { 'Must have': { 'gpa': 0.0, 'prob': 0.0, 'credit': 1.0, 'score': 0.0 } };
+				arrange();
+			});
+			$('#teacher_mode').click(function () {
+				$(this).blur();
+				$(this).addClass('active').siblings().removeClass('active');
+				W = { 'Must have': { 'gpa': 0.0, 'prob': 0.0, 'credit': 0.0, 'score': 1.0 } };
+				arrange();
+			});
+		});
+	</script>
+</head>
+
+<body>
+
+	<div id="page-header">
+		<div id="icon">
+			<h1>Course Arranger <small>413 <span class="glyphicon glyphicon-tint" aria-hidden="true"></span> Studio</small></h1>
+		</div>
+	</div>
+
+	<script>
+		function changeTable() {
+			for (var i = 1; i <= 13; i++) {
+				for (var j = 1; j <= 7; j++) {
+					document.getElementById(j + ' ' + i).textContent = '';
+				}
+			}
+			result[PLAN].selected.forEach((course) => {
+				course.pos.forEach((time) => {
+					// console.log(time.semester + ' ' + sem);
+					// console.log(document.getElementById(time.id).textContent);
+					if (time.semester == SEM) {
+						document.getElementById(time.id).textContent = course.name +'\n'+ course.teacher;
+					}
+					// console.log(document.getElementById(time.id).textContent);
+				});
+			});
+		}
+	</script>
+
+	<script>
+		function changePlan(item, x) {
+			console.log($(item));
+			console.log($(item).class);
+			$(item).blur();
+			$(item).addClass('active').siblings().removeClass('active');
+			PLAN = x;
+			changeList();
+			changeTable();
+		}
+	</script>
+	<script>
+		function changeSem() {
+			SEM ^= 1;
+			document.getElementById('change_sem_btn').innerHTML = `${'上下'[SEM]}半学期`;
+			changeTable();
+		}
+	</script>
+
+
+	<div class='right-base'>
+		<div style='flex:1' class="btn-group" role="group" aria-label="...">
+			<button type="button" class="btn btn-primary" id="gpa_mode">GPA上天模式</button>
+			<button type="button" class="btn btn-primary" id="credit_mode">学分爆炸模式</button>
+			<button type="button" class="btn btn-primary" id="teacher_mode">老师亲妈模式</button>
+		</div>
+		</br>
+		</br>
+		<div class='flex1' id="course_list">
+			已选上的课程
+			<ul class="list-group">
+				<li class="list-group-item"> nihao </li>
+				<li class="list-group-item"> fuck </li>
+			</ul>
+		</div>
+
+	</div>
+
+	<div class='left-base'>
+		<div class="btn-group" role="group" aria-label="...">
+			<button type="button" class="btn btn-primary" onclick="changePlan(this, 0)"> 方案一 </button>
+			<button type="button" class="btn btn-primary" onclick="changePlan(this, 1)"> 方案二 </button>
+			<button type="button" class="btn btn-primary" onclick="changePlan(this, 2)"> 方案三 </button>
+		</div>
+		<br>
+		<br>
+		<div class="btn-group" role="group" aria-label="...">
+			<button type="button" class="btn btn-primary" id="change_sem_btn" onclick="changeSem()">上半学期</button>
+			<!--<button type="button" class="btn btn-primary " onclick="changeSem(1)">下半学期</button>-->
+		</div>
+
+	</div>
+	<script>
+		var mytable = '<div class = left-base> <table class=\'table table-bordered table-nonfluid table-inverse\' >';
+		mytable += '\
+			<thead>\
+				<tr>\
+					<th>#</th>\
+					<th>周一</th>\
+					<th>周二</th>\
+					<th>周三</th>\
+					<th>周四</th>\
+					<th>周五</th>\
+					<th>周六</th>\
+					<th>周日</th>\
+				</tr>\
+			</thead>\
+			<tbody>\
+		';
+		for (var i = 1; i <= 13; i++) {
+			mytable += '<tr>'
+			for (var j = 0; j <= 7; j++) {
+				if (j == 0) {
+					mytable += '<td class=\'table_index\' id =\'class' + i + '\' style=\'boarderBottom:3px\' >';
+					mytable += i + '</td>';
+				}
+				else {
+					mytable += '<td class=\'table-content\' id=\'' + j + ' ' + i + '\'>'
+					mytable += '</td>';
+				}
+			}
+			mytable += '</tr>'
+		}
+
+		mytable += '</tbody></table></div>';
+
+		document.write(mytable);
+	</script>
+
+
+
+
+</body>
+
+</html>

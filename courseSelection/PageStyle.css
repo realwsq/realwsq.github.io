@@ -1,0 +1,43 @@
+@charset "utf-8";
+
+/*up right down left*/
+body {
+	font: 100% Verdana, Arial, Helvetica, sans-serif;
+	/*background: #666666; */
+	margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
+	padding: 0;
+	text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
+	color: #000000;
+}
+
+
+#container {
+	background: #fff;
+	/*margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
+	text-align: left; /* this overrides the text-align: center on the body element. */
+}
+
+#header {
+	background: #ddd;
+	/*margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
+	text-align: left; /* this overrides the text-align: center on the body element. */
+}
+
+#header h1 {
+    float: left;
+}
+
+.navigator {
+	text-align: left; /* this overrides the text-align: center on the body element. */
+    float: left;
+}
+
+#a1, #a2 {
+    position: absolute; 
+    bottom: 0;
+    text-decoration: underline;
+    color: #000;
+}
+
+
+

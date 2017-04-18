@@ -1,0 +1,33 @@
+body {
+	font: 100% Verdana, Arial, Helvetica, sans-serif;
+	/*background: #666666; */
+	margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
+	padding: 0;
+	text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
+	color: #000000;
+}
+.intropage {
+    /*margin-top: 0%;*/
+    margin-left: 20%;
+    margin-right: 20%;
+    border-left: 2px solid #ccc;
+    border-right: 2px solid #ccc;
+    text-align: left;
+}
+.intro {
+    /*border-top: 2px solid #ccc;*/
+    border-bottom: 2px solid #ccc;
+    padding-left: 10px;
+}
+.intropic_form {
+    width: 20%;
+    height: 20%;
+}
+.resources {
+    padding-left: 10px;
+}
+.head, .foot{
+    background: #527BBD; 
+	color:#fff;
+	padding: 0 10px 0 20px; 
+}

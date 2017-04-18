@@ -1,0 +1,35 @@
+.bg {
+    background: #fff;
+}
+#selfinfo-cont {
+    margin-top: 10%;
+    margin-bottom: 5%;
+    margin-left: 10%;
+    text-align: left;
+}
+#selfinfo-name {
+    font: 30px Georgia;
+    font-weight: bold;
+    color: #527BBD;
+    line-height: 30px;
+    margin-bottom: 30px;
+}
+#content {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+#content-head {
+    border-bottom: 2px solid #aaa;
+    font: 20px Georgia;
+    font-weight: bold;
+    color: #527BBD;
+}
+.item {
+
+}
+.item-title {
+
+}
+.item-title a{
+    color: #000;
+}

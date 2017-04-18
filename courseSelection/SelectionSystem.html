@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+	<head>
+		
+		<title>
+			Course Selection System
+		</title>
+			
+	 </head> 
+	
+	<body onload="init();">
+        <div id="page">
+        <div id="page-header">
+            <div id="icon">
+                <h1>Course Arranger <small>413 <span class="glyphicon glyphicon-tint" aria-hidden="true"></span> Studio</small></h1>
+            </div>
+            <!--<div id="icon-cddcourse">
+                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-menu-hamburger"></i></button>
+            </div>-->
+        </div>
+
+		<div id = "container">
+            
+            <div id="settings">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <!--<button type="button" class="btn btn-secondary">Left</button>-->
+                    <!--<input type="checkbox" id="jmode" class="modeselect">疯狂j类模式
+                    <input type="checkbox" id="tsmode" class="modeselect">疯狂通识模式-->
+                    <div class="[ form-group ]">
+                        <input type="checkbox" id="jmode" autocomplete="off" />
+                        <div class="[ btn-group ]">
+                            <label for="jmode" class="[ btn btn-primary ]">
+                                <span class="[ glyphicon glyphicon-ok ]"></span>
+                                <span> </span>
+                            </label>
+                            <label for="jmode" class="[ btn btn-default active ]">
+                                疯狂j类模式
+                            </label>
+                        </div>
+                        <input type="checkbox" id="tsmode" autocomplete="off" />
+                        <div class="[ btn-group ]">
+                            <label for="tsmode" class="[ btn btn-primary ]">
+                                <span class="[ glyphicon glyphicon-ok ]"></span>
+                                <span> </span>
+                            </label>
+                            <label for="tsmode" class="[ btn btn-default active ]">
+                                疯狂通识模式
+                            </label>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary" id="highgpamode">高GPA模式</button>
+                            <button type="button" class="btn btn-primary" id="goodteachermode">高教师评分模式</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div id="RecCourse" class = 'left-base' >
+                 <div id="recommandCourseList" style="width: 100%">
+
+                    <!--<input class="search" />-->
+<!--                     <span class="sort" data-sort="coursename">Sort by Course Name</span>
+                    <span class="sort" data-sort="teacher">or Teacher Name: </span> -->
+                    <input class="search" placeholder="课程/老师/时间" size="20"/>
+
+                    <table class="table">
+                        <thead>
+                        <th class="sort" data-sort="name" style="width: 20%">名称</th>
+                        <th class="sort" data-sort="teacher" style="width: 20%">老师</th>
+                        <th class="sort" data-sort="time" style="width: 20%">时间</th>
+                        <th class="sort" data-sort="location" style="width: 15%">地点</th>
+                        <th class="sort" data-sort="credit" style="width: 7%">学分</th>
+                        <th class="sort" data-sort="semester" style="width: 10%">学期</th>
+                        <th class="sort" data-sort="gpa" style="width: 5%">均绩</th>
+                        <th class="sort" data-sort="score" style="width: 5%">评分</th>
+                        <th class="sort" data-sort="score" style="display:none width: 0%"></th>
+                        </thead>
+                        <tbody class="list">
+                            
+                        </tbody>
+                    </table>
+                    <!--<ul class="list"></ul>-->
+                    <ul class="pagination"></ul>
+
+                </div>
+            </div>
+            <div id="CandCourse" class = 'right-base' >
+            <button type="button" class="btn btn-primary" >
+            <span class="glyphicon glyphicon-send" id="addall"> 一键爆炸</span>
+            </button>
+                <div id="candidateList" style="width: 100%">
+
+
+                    <table class="table">
+                        <tbody class="list">
+                            
+                        </tbody>
+                    </table>
+                    <!--<ul class="list"></ul>-->
+                    <ul class="pagination"></ul>
+
+                </div>
+<!--                 <span class="glyphicon glyphicon-send" id="addall"> 一键爆炸</span>
+                <ul id="candidateList" style="width: 100%">
+                </ul>
+                <table class="table">
+                <tbody class="list">
+                            
+                        </tbody>
+                </table> -->
+                
+            </div>
+		</div>  
+
+		
+		<!-- css sheet for how the page is laid out -->
+		<link href="PageStyle/SelectionSystem.css" rel="stylesheet">
+        <link href="PageStyle/bootstrap.min.css" rel="stylesheet">
+        <link href="ThirdParty/bootstrap.min.js" rel="stylesheet">
+        <link href="PageStyle/bootstrap-theme.css" rel="stylesheet">
+		<!--<link rel="stylesheet" href="PageStyle.css">-->
+
+		<!-- jqueury stuff.  Only used for the animation speed slider. -->
+		<!--<link rel="stylesheet" href="ThirdParty/jquery-ui-1.8.11.custom.css">-->
+				
+		<script src="ThirdParty/jquery-1.5.2.min.js"></script>
+		<script src="ThirdParty/jquery-ui-1.8.11.custom.min.js"></script>
+		<script src="ThirdParty/d3.min.js"></script>
+
+        <script src="settings.js"></script>
+        <script src="data/all_courses.js"></script>
+        <script src="Components/List.js"></script>	
+        <script src="Components/list.min.js"></script>
+        <script src="SelectionSystem/selection.js"></script>	
+        
+
+	</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>
+			Course Selection System
+		</title>
+			
+	 </head> 
+	
+	<!--<body onload="init();">-->
+    <body id="loginpage">
+
+		<!--<div id = "container">
+			
+			
+            <input type="text" placeholder="UserName" value="" id="username">
+            <input type="text" placeholder="PassWord" value="" id="password">
+			<button type="button" id="submit">Submit</button>
+
+		</div>  -->
+        <div class="container">
+
+        <form class="form-signin">
+            <h2 class="form-signin-heading">求你了<br>选个课吧</h2>
+            <label for="inputEmail" class="sr-only">学号</label>
+            <input type="email" id="username" class="form-control" placeholder="学号" required autofocus>
+            <label for="inputPassword" class="sr-only">教务网密码</label>
+            <input type="password" id="password" class="form-control" placeholder="教务网密码" required>
+            <div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me"> 请记住我
+            </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" id="submit">登录</button>
+        </form>
+
+        </div> <!-- /container -->
+		
+		<!-- css sheet for how the page is laid out -->
+        <link href="PageStyle/login.css" rel="stylesheet">
+        <link href="PageStyle/bootstrap.min.css" rel="stylesheet">
+		<!--<link rel="stylesheet" href="PageStyle.css">-->
+
+		<!-- jqueury stuff.  Only used for the animation speed slider. -->
+		<!--<link rel="stylesheet" href="ThirdParty/jquery-ui-1.8.11.custom.css">-->
+				
+		<script src="ThirdParty/jquery-1.5.2.min.js"></script>
+		<script src="ThirdParty/jquery-ui-1.8.11.custom.min.js"></script>
+		<script src="ThirdParty/d3.min.js"></script>
+
+        <script src="settings.js"></script>	
+        <script src="Login/login.js"></script>	
+			
+
+	</body>
+</html>
+
+

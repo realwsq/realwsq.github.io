@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+		<title>
+			Fibonacci Heap Visualization
+		</title>
+			
+			
+	 </head> 
+	
+	<body onload="init();" class="VisualizationMainPage">
+
+		<div id = "container">
+			
+			<div id="header">  
+				<h1>Shortest Path Algorithm with Heaps</h1>
+			</div>
+
+            <div = id = "mainContent"> 
+				
+                <svg id="DijkstraMap" width="700px" height="400px"></svg>
+                <div id = "generalAnimationControlSection">
+					<table id="GeneralAnimationControls">  </table>		
+				</div>
+
+                <div id="AlgPresentation">
+                    <div id="FibonaciiHeap">
+                        <div class = "AlgControlSection">
+					        <table id="AlgrithmSpecificControls_fh">  </table>		
+				        </div>
+                        <svg id="svg_fh" width="600px" height="400px"></svg>
+                        <div class = "AnimControlSection">
+					        <table id="AnimationSpecificControls_fh">  </table>		
+				        </div>
+                    </div>
+                </div>
+
+				<div id="AlgPresentation">
+                    <div id="BinomialHeap">
+                        <div class = "AlgControlSection">
+					        <table id="AlgrithmSpecificControls">  </table>		
+				        </div>
+                        <svg id="svg_binomialh" width="600px" height="400px"></svg>
+                        <div class = "AnimControlSection">
+					        <table id="AnimationSpecificControls">  </table>		
+				        </div>
+                    </div>
+                </div>
+				
+				<div id="AlgPresentation">
+                    <div id="BinaryHeap">
+                        <div class = "AlgControlSection">
+					        <table id="AlgrithmSpecificControls">  </table>		
+				        </div>
+                        <svg id="svg_binaryh" width="600px" height="400px"></svg>
+                        <div class = "AnimControlSection">
+					        <table id="AnimationSpecificControls">  </table>		
+				        </div>
+                    </div>
+                </div>
+				
+				
+			</div>
+			
+            <div id="footer">  
+				<p>Group 15</p>
+			</div>
+		</div>  
+		
+		<!-- css sheet for how the page is laid out -->
+		
+		<link rel="stylesheet" href="visualizationPageStyle.css">
+
+		<!-- jqueury stuff.  Only used for the animation speed slider. -->
+		<!--<link rel="stylesheet" href="ThirdParty/jquery-ui-1.8.11.custom.css">-->
+				
+		<script src="ThirdParty/jquery-1.5.2.min.js"></script>
+		<script src="ThirdParty/jquery-ui-1.8.11.custom.min.js"></script>
+		<script src="ThirdParty/d3.min.js"></script>	
+		<!--<script src="https://d3js.org/d3.v4.min.js"></script>
+  		<script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>-->
+		<script type = "text/javascript" src = "settings.js"> </script>
+        <!-- Javascript for the actual visualization code -->
+		<script type = "text/javascript" src = "graph.js"> </script>
+		<script type = "text/javascript" src = "AnimationLibrary/AnimatedCircle.js"> </script>
+		<script type = "text/javascript" src = "AnimationLibrary/AnimatedLine.js"> </script>
+		<script type = "text/javascript" src = "AnimationLibrary/AnimatedText.js"> </script>
+		<script type = "text/javascript" src = "AnimationLibrary/AnimationMain.js"> </script>
+		<script type = "text/javascript" src = "AlgorithmLibrary/FibonacciHeapPerform.js"> </script> 
+		<script type = "text/javascript" src = "AlgorithmLibrary/BinomialHeapPerform.js"> </script>
+		<script type = "text/javascript" src = "AlgorithmLibrary/DijkstraPerform.js"> </script>
+		<script type = "text/javascript" src = "AlgorithmLibrary/BinaryHeapPerform.js"> </script>
+		<script type = "text/javascript" src = "AlgorithmLibrary/Algorithm.js"> </script>
+		<script type = "text/javascript" src = "AlgorithmLibrary/FibonacciHeap.js"> </script>
+		<script type = "text/javascript" src = "AlgorithmLibrary/BinomialHeap.js"> </script>  
+		<script type = "text/javascript" src = "AlgorithmLibrary/BinaryHeap.js"> </script>  
+		<script type = "text/javascript" src = "AlgorithmLibrary/Algorithm.js"> </script>
+		
+
+	</body>
+</html>
