@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+    <style>
+	body, html {
+		user-select: none;
+	}
+	</style>
+</head>
+<body>
+    <svg id="nation" width=800 height=600></svg>
+    <input type="range" id="year" min="1800" max="2008" value="2008" style="width:900px" step="1" onChange="reShow()"/>
+
+    <script src="nations.js"></script>
+    <script src="create.js"></script>
+    <script src="washData.js"></script>
+    <script src="path.js"></script>
+    <script src="coordinate.js"></script>
+    <script src="nodeCircle.js"></script>
+
+    <script>
+    var left = 50,
+		down = 550,
+		up = 50,
+		right = 780;
+	var rmax = 60,
+		rmin = 2;
+	var tempYear = 2008;
+	var data_after = washData();
+	var co = Coordinate(left, down, up, right);
+	var YEAR = createText(tempYear, right, down - 70, "#aaa");
+	var COUNTRY = createText("", left + 40, up, "#aaa");
+	COUNTRY.setAttribute("text-anchor", "start");
+	COUNTRY.setAttribute("dominant-baseline", "middle");
+	COUNTRY.setAttribute("font-size", 80);
+	COUNTRY.setAttribute("opacity", 0);
+	YEAR.setAttribute("text-anchor", "end");
+	YEAR.setAttribute("dominant-baseline", "middle");
+	YEAR.setAttribute("font-size", 140);
+	YEAR.setAttribute("opacity", 0.1);
+
+	var k = (rmax - rmin) / (data_after.range.population[1] - data_after.range.population[0]) ;
+	var b = rmin - k * data_after.range.population[0];
+	for (var i = 0; i < data_after.length; i++) {
+		getPath(data_after[i], co);
+		data_after[i].path.setAttribute("opacity", 0);
+	}
+	createNations(tempYear);
+
+    showNodes(tempYear);
+	var reShow = function () {
+		console.log("h");
+        var year = document.getElementById("year").value;
+        if (year != tempYear) {
+        	showNodes(year);
+        	YEAR.innerHTML = year;
+        	tempYear = year;
+        }
+        console.log("in onload" + tempYear);
+    };
+    // setInterval(reShow, 100);
+    var slider = document.getElementById("year");
+    // console.log(slider);
+    // debugger;
+    slider.onmousedown = function (e) {
+    	document.onmousemove = reShow;
+    	document.oumouseup = function () {
+    		document.onmousemove = {};
+    	}
+    }
+    
+    </script>
+</body>
+</html>
