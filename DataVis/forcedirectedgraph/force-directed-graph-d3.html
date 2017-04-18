@@ -1,0 +1,127 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>force directed graph</title>
+   	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script> 
+    <script src="miserables.js"></script>
+</head>
+<style>
+
+.links {
+    stroke: #aaa;
+}
+
+.nodes circle{
+    pointer-events: all;
+    stroke: none;
+    fill: steelblue;
+    fill-opacity: 0.7;
+}
+
+.nodes text {
+	fill: d3.scale.category20(1);
+	fill-opacity: 0.7;
+	font: 10px sans-serif;
+	text-anchor: head;
+}
+
+.nodes circle:hover {
+	fill-opacity: 1;
+}
+
+.unselect {
+	user-select: none;
+}
+
+</style>
+
+<body>
+<script>
+
+var index = {}
+for (var i = 0; i < mis.nodes.length; i++) {
+	index[mis.nodes[i].id] = i;
+}
+for (var i = 0; i < mis.links.length; i++) {
+	mis.links[i].source = index[mis.links[i].source];
+	mis.links[i].target = index[mis.links[i].target];
+}
+
+var width = 600;
+var height = 800;
+
+var svg = d3.select("body")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+var force = d3.layout.force()
+	.nodes(mis.nodes)
+	.links(mis.links)
+	.size([width, height])
+	.linkDistance(30)
+	.charge(-200);
+	// .center([width/2, height/2]);
+
+force.start();
+
+console.log(d3.layout.force);
+console.log(mis.nodes);
+console.log(mis.links);
+
+var svg_edges = svg.selectAll("line")
+	.data(mis.links)
+	.enter().append("line")
+	.attr("class", "links")
+
+// var svg_nodes = svg.selectAll("circle")
+// 	.data(mis.nodes)
+// 	.enter().append("circle")
+// 	.attr("class", "nodes")
+// 	.attr("r", 4)
+// 	.call(force.drag);
+
+var svg_nodes = svg.selectAll("g")
+	.data(mis.nodes)
+	.enter().append("g")
+	.attr("class", "nodes");
+
+var svg_circles = svg_nodes.append("circle")
+	.attr("r", 4)
+	.call(force.drag());
+
+var svg_text = svg_nodes.append("text")
+	.text(function(d){return d.id;})
+	.attr("class", "unselect");
+
+
+force.on("tick", function() {
+	svg_edges.attr("x1", function(d) {return d.source.x;})
+		.attr("y1", function(d) {return d.source.y;})
+		.attr("x2", function(d) {
+			return d.target.x;})
+		.attr("y2", function(d) {return d.target.y;});
+
+	svg_circles.attr("cx", function(d) {return d.x;})
+		.attr("cy", function(d) {return d.y;});
+
+	svg_text.attr("x", function(d) {return d.x;})
+		.attr("y", function(d) {return d.y});
+
+})
+
+
+
+</script>
+
+</body>
+
+
+
+
+
+
+
+
+
+

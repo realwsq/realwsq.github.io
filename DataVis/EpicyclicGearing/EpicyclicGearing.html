@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+	#slider {
+		height:15px;width:278px;
+		border:1px solid #000000;
+		position:relative;
+	}
+	#sliderLeft {
+		height:13px; 
+		width:13px;
+		float:left;
+		border:1px solid #cccccc;
+		cursor:pointer;
+	}
+	#sliderBlock {
+		height:13px;
+		width:50px;
+		border:1px solid #cccccc;
+		position:absolute;
+		top:0;
+		left:113px;
+		cursor:pointer;
+		background:#cccccc;
+		text-align:center;
+	}
+	#sliderRight {
+		height:13px;
+		width:13px;
+		float:right;
+		border:1px solid #cccccc;
+		cursor:pointer;
+	}
+	</style>
+	<script src="EpicyclicGearing.js"></script>
+	<script src="slider.js"></script>
+
+	<h3>EpicyclicGearing</h3>
+	<button type="button" id="Annulus" onclick="setMode(1)">Annulus</button>
+	<button type="button" id="Planets" onclick="setMode(2)">Planets</button>
+	<button type="button" id="Sun" onclick="setMode(3)">Sun</button>
+	<p></p>
+	<div id="slider">
+	<span id="sliderLeft" ><</span>
+	<span id="sliderRight">></span>
+	<span id="sliderBlock">==</span>
+
+
+</head>
+<body>
+	<svg id="EpicyclicGearing" width="1000" height="1000"></svg>
+	<script>
+	var sd = new Slider(function(p) {
+		document.getElementById("sliderBlock").innerHTML = 5 * p + "%";
+		setVelocityRatio(p * 5 / 100);
+	})
+
+	</script>
+
+</body>
+</html>

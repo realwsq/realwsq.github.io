@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<style>
+
+</style>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+</head>
+
+<body>
+<svg id="PolarClock" width="960" height="800"></svg>
+<script>
+var w = 960;
+var h = 800;
+
+var svg = d3.select("body")
+	.append("svg")
+	.attr("width", w)
+	.attr("height", h);
+
+var rio = 30;
+var roi = 3;
+var r_hour_in = 90;
+var r_hour_out = r_hour_in + rio;
+var r_min_in = r_hour_out + roi;
+var r_min_out = r_min_in + rio;
+var r_sec_in = r_min_out + roi;
+var r_sec_out = r_sec_in + rio;
+
+var color = d3.scale.category10();
+
+function drawArc(rin, rout, angle, color) {
+	var getD = function() {
+		var d = "M " + (w/2) + " " + (h/2-rout) + " ";
+		d += "A " + rout + " " + rout + " 0 " + (angle>Math.PI?"1 ":"0 ") + "1 " + (w/2 + rout*Math.cos(angle - Math.PI/2)) + " " + (h/2 + rout*Math.sin(angle - Math.PI/2)) + " ";
+		d += "L " + (w/2 + rin*Math.cos(angle - Math.PI/2)) + " " + (h/2 + rin*Math.sin(angle - Math.PI/2)) + " ";
+		d += "A " + rin + " " + rin + " 0 " + (angle>Math.PI?"1 ":"0 ") + "0 " + " " + (w/2) + " " + (h/2-rin) + " ";
+		d += "L " + (w/2) + " " + (h/2-rout) + " ";
+		// var d = "M500 450 A50 50 0 0 1 550 500 L500 500 Z";
+		// console.log(d);
+		// debugger;
+		return d;
+	}
+	var arc = document.createElementNS("http://www.w3.org/2000/svg", "path");
+	arc.setAttribute("d", getD());
+	arc.setAttribute("fill", color);
+	arc.setAttribute("stroke", color);
+	var svg = document.getElementById("PolarClock");
+	svg.appendChild(arc);
+}
+
+var text_hour = document.createElementNS("http://www.w3.org/2000/svg", "text");
+var text_min = document.createElementNS("http://www.w3.org/2000/svg", "text");
+var text_sec = document.createElementNS("http://www.w3.org/2000/svg", "text");
+text_hour.setAttribute("stroke", "black");
+text_hour.setAttribute("x", w/2);
+text_hour.setAttribute("y", h/2- r_hour_in-10);
+// text_hour.setAttribute("transform", "translate(" + w/2 + "," + h/2 + ")");
+
+text_min.setAttribute("stroke", "black");
+text_min.setAttribute("x", w/2);
+text_min.setAttribute("y", h/2- r_min_in-10);
+// text_min.setAttribute("transform", "translate(" + w/2 + "," + h/2 + ")");
+text_sec.setAttribute("stroke", "black");
+text_sec.setAttribute("x", w/2);
+text_sec.setAttribute("y", h/2- r_sec_in-10);
+// text_sec.setAttribute("transform", "translate(" + w/2 + "," + h/2 + ")");
+
+function tick() {
+	var now = new Date;
+	var hour = now.getHours(),
+		min = now.getMinutes(),
+		sec = now.getSeconds();
+
+	var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+	rect.setAttribute("x", 0);
+	rect.setAttribute("y", 0);
+	rect.setAttribute("width", w);
+	rect.setAttribute("height", h);
+	rect.setAttribute("fill", "white");
+	var svg = document.getElementById("PolarClock");
+	svg.appendChild(rect);
+	
+	text_hour.setAttribute("transform", "rotate(" + (hour * 180 / 12) + " 480 400)");
+	text_min.setAttribute("transform", "rotate(" + min * 180 / 30 + " 480 400)");
+	text_sec.setAttribute("transform", "rotate(" + sec * 180 / 30 + " 480 400)");
+
+	drawArc(r_hour_in, r_hour_out, hour * Math.PI / 12, color(3));
+	drawArc(r_min_in, r_min_out, min * Math.PI / 30, color(2));
+	drawArc(r_sec_in, r_sec_out, sec * Math.PI / 30, color(1));
+
+	text_hour.innerHTML = hour + " hours";
+	svg.appendChild(text_hour);
+	text_min.innerHTML = min + " minutes";
+	svg.appendChild(text_min);
+	text_sec.innerHTML = sec + " seconds";
+	svg.appendChild(text_sec);
+
+}
+
+setInterval(tick, 1000);
+
+</script>
+</body>
